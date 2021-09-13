@@ -6,6 +6,10 @@
       <h3 class="text-center text-xl normal-case">- Trade size app -</h3>
       <!-- <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> -->
+    <!-- <a class="rounded shadow-md bg-blue-400 text-white mt-3 p-2"> -->
+      <router-link to="/" :class="$route.name == 'Home' ? 'text-white':'hover:text-white'">Home</router-link> |
+      <router-link to="/add-asset" :class="$route.name == 'addAsset' ? 'text-white' : 'hover:text-white'">Add Asset</router-link>
+    <!-- </a> -->
     </div>
     <router-view/>
 

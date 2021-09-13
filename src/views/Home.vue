@@ -32,12 +32,12 @@
           <input type="text" v-model="lossPoint" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
         </div>
         <div class="col-span-6 sm:col-span-3">
-          <label for="asset" class="block text-sm font-medium text-gray-700">Double lot size here</label>
-          <input type="number" v-model="lotSize" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-        </div>
-        <div class="col-span-6 sm:col-span-3">
           <label for="asset" class="block text-sm font-medium text-gray-700">Enter Profit Points</label>
           <input type="text" v-model="profitPoint" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+        </div>
+        <div class="col-span-6 sm:col-span-3">
+          <label for="asset" class="block text-sm font-medium text-gray-700">Double lot size here</label>
+          <input type="number" v-model="lotSize" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
         </div>
         <div class="col-span-6 sm:col-span-3">
           <label for="asset" class="block text-sm font-medium text-gray-700">Risk ratio</label>
@@ -74,6 +74,12 @@ export default {
     this.$store.dispatch('assets/all')
   },
 
+  watch:{
+    assets(assets){
+      return assets;
+    }
+  },
+
   computed:{
     ...mapState('assets',['assets']),
     loss(){
@@ -92,8 +98,8 @@ export default {
       var asset = this.assets.find(asset => asset.id == this.selectedAsset)
       this.lotSize = asset.lot_size
       this.originalLotSize = asset.lot_size
-      this.lossPoint = null
-      this.profitPoint = null
+      this.lossPoint = 0
+      this.profitPoint = 0
     },
     doubleLot(){
       if (this.doubleBy == 1) {
